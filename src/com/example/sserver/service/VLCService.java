@@ -114,8 +114,6 @@ public class VLCService extends Service implements IVLCClientListener {
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
 		registerReceiver(wifiReceiver,intentFilter);
-		
-		
 	}
 
 

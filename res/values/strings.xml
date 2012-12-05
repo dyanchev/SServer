@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">SServer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_stream_server">StreamServerActivity</string>
+    <string name="bnt_play">Play</string>
+    <string name="bnt_pause">Pause</string>
+    <string name="bnt_stop">Stop</string>
+    <string name="bnt_prev">Prev</string>
+    <string name="bnt_next">Next</string>
+
+</resources>

@@ -4,6 +4,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -48,6 +49,15 @@ public class StreamServerActivity extends TabActivity  {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_stream_server, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==R.id.menu_settings) {
+			Intent intent = new Intent(this,ServerActivity.class);
+			startActivity(intent);
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }

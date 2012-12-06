@@ -3,23 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/bnt_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bnt_play"
-        android:layout_alignBottom="@+id/bnt_play"
-        android:layout_centerHorizontal="true"
-        android:text="@string/bnt_pause" />
-
-    <SeekBar
-        android:id="@+id/pl_progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bnt_pause"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="84dp" />
-
     <TextView
         android:id="@+id/pl_time_esp"
         android:layout_width="wrap_content"
@@ -36,23 +19,6 @@
         android:layout_alignBottom="@+id/pl_time_esp"
         android:layout_alignParentRight="true"
         />
-
-    <TextView
-        android:id="@+id/pl_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp" />
-
-    <Button
-        android:id="@+id/bnt_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pl_time_esp"
-        android:layout_marginTop="47dp"
-        android:layout_toLeftOf="@+id/bnt_pause"
-        android:text="@string/bnt_play" />
 
     <Button
         android:id="@+id/bnt_stop"
@@ -79,5 +45,47 @@
         android:layout_alignBottom="@+id/bnt_stop"
         android:layout_alignParentRight="true"
         android:text="@string/bnt_next" />
+
+    <TextView
+        android:id="@+id/pl_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp" />
+
+    <SeekBar
+        android:id="@+id/pl_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pl_title"
+        android:layout_marginTop="38dp" />
+
+    <Button
+        android:id="@+id/bnt_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bnt_stop"
+        android:layout_alignBottom="@+id/bnt_stop"
+        android:layout_centerHorizontal="true"
+        android:text="@string/bnt_pause" />
+
+    <Button
+        android:id="@+id/bnt_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pl_progress_bar"
+        android:layout_toLeftOf="@+id/bnt_pause"
+        android:text="@string/bnt_play" />
+
+    <ListView
+        android:id="@+id/pl_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/pl_time_esp" >
+
+    </ListView>
 
 </RelativeLayout>

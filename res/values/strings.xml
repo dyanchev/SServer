@@ -9,5 +9,6 @@
     <string name="bnt_stop">Stop</string>
     <string name="bnt_prev">Prev</string>
     <string name="bnt_next">Next</string>
+    <string name="server_tooltip">Server ipaddress:port</string>
 
 </resources>

@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.logging.Logger;
 
 import com.example.sserver.list.FileListArrayAdapter;
 import com.example.sserver.list.FileSystem;
 import com.example.sserver.list.Playlist;
+import com.example.sserver.list.RemotePlaylistAdapter;
 import com.example.sserver.model.CategoryItem;
 import com.example.sserver.model.FileSystemItem;
 import com.example.sserver.model.InfoItem;
@@ -29,6 +31,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -49,6 +52,8 @@ public class PlayerActivity extends GenericActivity {
 	TextView timePast;
 	TextView totalTime;
 	TextView title;
+	ListView plListView;
+	ArrayAdapter<String> plAdapter;
 
 	SeekBar progressBar;
 	VlcStatusItem vlcStatus;
@@ -88,6 +93,9 @@ public class PlayerActivity extends GenericActivity {
 		timePast = (TextView) findViewById(R.id.pl_time_esp);
 		totalTime = (TextView) findViewById(R.id.pl_time_total);
 		title = (TextView) findViewById(R.id.pl_title);
+		plListView = (ListView)findViewById(R.id.pl_log);
+		plAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new ArrayList<String>());
+		plListView.setAdapter(plAdapter);
 		progressBar = (SeekBar) findViewById(R.id.pl_progress_bar);
 		progressBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -170,7 +178,7 @@ public class PlayerActivity extends GenericActivity {
 			Log.d(TAG, "Playlist exist:" + playlist.getPath());
 			mBoundService.sendPalyCommand("http://"+getLocalIpAddress() + ":"+ SERVICE_PORT_NUMBER + playlist.getPath());
 		}
-		
+		Log("Local IP address:"+getLocalIpAddress());
 	}
 
 	public final void onPauseButton() {
@@ -258,6 +266,10 @@ public class PlayerActivity extends GenericActivity {
 
 	public Context This() {
 		return this;
+	}
+	
+	public void Log(String msg) {
+		plAdapter.add(msg);
 	}
 
 }

@@ -14,6 +14,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
@@ -66,7 +67,7 @@ public class VLCService extends Service implements IVLCClientListener {
 	private final IBinder mBinder = new LocalBinder();
 	public String TAG = "VLC Service";
 	
-	public static String VLC_HOST = "10.0.2.2:8080";
+	public static String VLC_HOST = "10.0.0.70:8080";
 	private VLCClient vlcClient;
 	
 	private MP3Service mp3Service;
@@ -85,7 +86,13 @@ public class VLCService extends Service implements IVLCClientListener {
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "Service created");
-		vlcClient = new VLCClient(VLC_HOST);
+		SharedPreferences sp = this.getSharedPreferences(GenericActivity.SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+		String server = sp.getString("server", "10.0.2.2:8080");
+		Log.d(TAG, "Server host:"+server);
+		if(GenericActivity.EMULATION) {
+			server = "10.0.2.2:8080";
+		}
+		vlcClient = new VLCClient(server);
 		vlcClient.setVlcClientListener(this);
 		tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -214,6 +221,16 @@ public class VLCService extends Service implements IVLCClientListener {
 		if(isWifiConnected) {
 			vlcClient.sendPrevCommand();
 		}
+	}
+	
+	public void onServerChanged() {
+		vlcClient.cancelTimer();
+		vlcClient.setVlcClientListener(null);
+		SharedPreferences sp = this.getSharedPreferences(GenericActivity.SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+		String server  = sp.getString("server", "10.0.2.2:8080");
+		Log.d(TAG, "Server host:"+server);
+		vlcClient = new VLCClient(server);
+		vlcClient.setVlcClientListener(this);
 	}
 	
 	public void onWifiConnecred() {

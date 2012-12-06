@@ -1,27 +1,24 @@
 package com.example.sserver;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-
-import com.example.sserver.service.VLCService;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.IBinder;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.sserver.service.VLCService;
 
 public class GenericActivity extends Activity {
 
 	public static final String INTENT_SEEK = "com.exaple.seek";
 	public static final String INTENT_PLAYLIST = "com.example.playlist";
-	public static final int SERVICE_PORT_NUMBER = 8081;
+	public static final String SHARED_PREFERENCES = "com.example.preferences";
+	public static final int SERVICE_PORT_NUMBER = 8080;
 	public static final boolean EMULATION = true;
 	
 	public static String TAG = "MP3 Server";
@@ -86,26 +83,19 @@ public class GenericActivity extends Activity {
 	}
 	
 	public String getLocalIpAddress() {
-		/*try {
-			for (Enumeration<NetworkInterface> en = NetworkInterface
-					.getNetworkInterfaces(); en.hasMoreElements();) {
-				NetworkInterface intf = en.nextElement();
-				for (Enumeration<InetAddress> enumIpAddr = intf
-						.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-					InetAddress inetAddress = enumIpAddr.nextElement();
-					if (!inetAddress.isLoopbackAddress()) {
-						String ip = Formatter.formatIpAddress(inetAddress
-								.hashCode());
-						Log.i(TAG, "IP=" + ip);
-						return ip;
-					}
-				}
-			}
-		} catch (SocketException ex) {
-			Log.e(TAG, ex.toString());
-		}*/
-		String result = "localhost";
-		return result;
+		WifiManager wm = (WifiManager)getSystemService(WIFI_SERVICE);
+		WifiInfo wifiInfo = wm.getConnectionInfo();
+		int ip = wifiInfo.getIpAddress();
+		String ipString = String.format(
+				   "%d.%d.%d.%d",
+				   (ip & 0xff),
+				   (ip >> 8 & 0xff),
+				   (ip >> 16 & 0xff),
+				   (ip >> 24 & 0xff));
+	if(GenericActivity.EMULATION) {
+		return "localhost:8081";
+	}
+	return ipString;
 	}
 	
 }

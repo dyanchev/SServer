@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import android.graphics.Path;
+import android.util.Log;
+
+import com.example.sserver.GenericActivity;
 import com.example.sserver.model.FileSystemItem;
 
 public class FileSystem {
@@ -43,6 +47,7 @@ public class FileSystem {
 	
 	public List<FileSystemItem> getParent() {
 		currentDir = currentDir.getParentFile();
+		Log.d(GenericActivity.TAG, "Path variabale:"+currentDir.getPath());
 		return getCurrentDir();
 	}
 	

@@ -38,7 +38,7 @@ public class FileListArrayAdapter extends ArrayAdapter<FileSystemItem> implement
 		FileSystemItem file = objects.get(position);
 		View row = convertView;
 		CheckBoxHolder holder = null;
-		if(row == null) {
+		//if(row == null) {
 			LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
 			row = layoutInflater.inflate(R.layout.chech_box_row, parent,false);
 			holder = new CheckBoxHolder();
@@ -46,9 +46,9 @@ public class FileListArrayAdapter extends ArrayAdapter<FileSystemItem> implement
 			holder.getCb().setTag(position);
 			holder.setFile(file);
 			row.setTag(holder);
-		} else {
-			holder = (CheckBoxHolder)row.getTag();
-		}
+		//} else {
+		//	holder = (CheckBoxHolder)row.getTag();
+		//}
 		//holder.setFile(file);
 		holder.getCb().setText(file.getFile().getName());
 		holder.getCb().setOnCheckedChangeListener(null);

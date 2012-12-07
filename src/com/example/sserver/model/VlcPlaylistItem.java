@@ -9,6 +9,7 @@ public class VlcPlaylistItem implements Parcelable {
 	int id;
 	int duration;
 	String uri;
+	boolean selected;
 	
 	public VlcPlaylistItem() {
 		
@@ -65,6 +66,14 @@ public class VlcPlaylistItem implements Parcelable {
 	}
 	public void setUri(String uri) {
 		this.uri = uri;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 	
 }

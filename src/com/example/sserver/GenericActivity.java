@@ -24,7 +24,7 @@ public class GenericActivity extends Activity {
 	public static String TAG = "MP3 Server";
 	
 	protected VLCService mBoundService;
-	private boolean mIsBound;
+	protected boolean mIsBound;
 	
 	private ServiceConnection mConnection = new ServiceConnection() {
 	    public void onServiceConnected(ComponentName className, IBinder service) {

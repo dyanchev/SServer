@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import com.example.sserver.list.FileListArrayAdapter;
 import com.example.sserver.list.FileSystem;
-import com.example.sserver.list.Playlist;
+import com.example.sserver.list.VLCStatus;
 import com.example.sserver.list.RemotePlaylistAdapter;
 import com.example.sserver.model.CategoryItem;
 import com.example.sserver.model.FileSystemItem;
@@ -202,6 +202,7 @@ public class PlayerActivity extends GenericActivity {
 
 	public void onVlcStatusChanged(VlcStatusItem status) {
 		vlcStatus = status;
+		VLCStatus.getInstanse().setVlcStatus(status);
 		if (vlcStatus != null) {
 			if (vlcStatus.getState().equals("playing") && !isPulling) {
 				isPulling = true;

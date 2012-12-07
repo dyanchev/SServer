@@ -8,6 +8,7 @@ import com.example.sserver.model.VlcPlaylistItem;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,9 @@ public class RemotePlaylistAdapter extends ArrayAdapter<VlcPlaylistItem> {
 		if(item != null) {
 			
 			holder.name.setText(item.getName() != null ? item.getName() : "null");
+			if(item.isSelected()) {
+				holder.name.setTypeface(null, Typeface.BOLD);
+			}
 		}
 		return row;
 	}

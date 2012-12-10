@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashSet;
+import java.util.StringTokenizer;
 
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -89,10 +91,24 @@ public class LocalPlaylistActivity extends GenericActivity {
 					hs.add(item);
 				}
 			}
+			fwr.write("#EXTM3U");
+			fwr.newLine();
 			for (FileSystemItem item : hs) {
+				MediaMetadataRetriever retriver = new MediaMetadataRetriever();
+				retriver.setDataSource(item.getFile().getPath());
+				String artist,song = null;
+				artist = retriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+				song = retriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+				if(artist != null && song != null) {
+					fwr.write("#EXTINF:-1,"+artist+" - "+song);
+				}else {
+					fwr.write("#EXTINF:-1,"+item.getFile().getName());
+					//Log.d(TAG, "File name is :"+ item.getFile().getName());
+				}
+				fwr.newLine();
 				String line = "http://" + getLocalIpAddress() + ":"
 						+ SERVICE_PORT_NUMBER + item.getFile().getPath();
-				Log.d(TAG, "m3u line:" + line);
+				//Log.d(TAG, "m3u line:" + line);
 				fwr.write(line);
 				fwr.newLine();
 			}

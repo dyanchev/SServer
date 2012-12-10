@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,36 +82,42 @@ public class RemotePlaylistActivity extends GenericActivity {
 		Log.d(TAG, "Playlist received");
 		pl_adapter = new RemotePlaylistAdapter(this, 0, playlist);
 		pl_lv.setAdapter(pl_adapter);
+		for(VlcPlaylistItem item : playlist) {
+			if(item.isSelected()) {
+				int itemIndex = pl_adapter.getPosition(item);
+				pl_lv.setSelection(itemIndex);
+			}
+		}
 		// for(VlcPlaylistItem item : playlist) {
 		// Log.d(TAG, item.getName());
 		// }
-		VlcStatusItem statusItem = VLCStatus.getInstanse().getVlcStatus();
-		String name = null;
-		for (CategoryItem cat : statusItem.getCategory()) {
-			if (cat.getName().equals("meta")) {
-				for (InfoItem info : cat.getInfo()) {
-					if (info.getName().equals("title")) {
-						name = info.getValue();
-					}
-				}
-			}
-		}
-		int plIndex = -1;
-		if (name != null) {
-			//Log.d(TAG, "Name is:" + name);
-			for (VlcPlaylistItem item : playlist) {
-				//Log.d(TAG, "ITEM NAME:" + item.getName());
-				if (item.getName().equalsIgnoreCase(name)) {
-					plIndex = pl_adapter.getPosition(item);
-				}
-			}
+//		VlcStatusItem statusItem = VLCStatus.getInstanse().getVlcStatus();
+//		String name = null;
+//		for (CategoryItem cat : statusItem.getCategory()) {
+//			if (cat.getName().equals("meta")) {
+//				for (InfoItem info : cat.getInfo()) {
+//					if (info.getName().equals("title")) {
+//						name = info.getValue();
+//					}
+//				}
+//			}
+//		}
+//		int plIndex = -1;
+//		if (name != null) {
+//			//Log.d(TAG, "Name is:" + name);
+//			for (VlcPlaylistItem item : playlist) {
+//				//Log.d(TAG, "ITEM NAME:" + item.getName());
+//				if (item.getName().equalsIgnoreCase(name)) {
+//					plIndex = pl_adapter.getPosition(item);
+//				}
+//			}
 			//Log.d(TAG, "current playing index:" + plIndex);
-			if (plIndex != -1) {
-				pl_lv.setSelection(plIndex);
-				pl_adapter.getItem(plIndex).setSelected(true);
-				pl_adapter.notifyDataSetChanged();
+			//if (plIndex != -1) {
+			//	pl_lv.setSelection(plIndex);
+			//	pl_adapter.getItem(plIndex).setSelected(true);
+			//	pl_adapter.notifyDataSetChanged();
 				
-			}
-		}
+			//}
+		//}
 	}
 }

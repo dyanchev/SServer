@@ -2,6 +2,7 @@ package com.example.sserver.list;
 
 import java.util.List;
 
+import com.example.sserver.GenericActivity;
 import com.example.sserver.R;
 import com.example.sserver.list.FileListArrayAdapter.CheckBoxHolder;
 import com.example.sserver.model.VlcPlaylistItem;
@@ -9,6 +10,7 @@ import com.example.sserver.model.VlcPlaylistItem;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,9 @@ public class RemotePlaylistAdapter extends ArrayAdapter<VlcPlaylistItem> {
 			holder.name.setText(item.getName() != null ? item.getName() : "null");
 			if(item.isSelected()) {
 				holder.name.setTypeface(null, Typeface.BOLD);
+				//Log.d(GenericActivity.TAG, "PlaylistAdapter : isSelected:"+item.isSelected());
+			} else {
+				holder.name.setTypeface(null, Typeface.NORMAL);
 			}
 		}
 		return row;

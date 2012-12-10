@@ -20,6 +20,7 @@ public class VlcPlaylistItem implements Parcelable {
 		id = source.readInt();
 		duration = source.readInt();
 		uri = source.readString();
+		selected = Boolean.parseBoolean(source.readString());
 	}
 	
 	public static final Parcelable.Creator<VlcPlaylistItem> CREATOR = new Parcelable.Creator<VlcPlaylistItem>() {
@@ -41,6 +42,7 @@ public class VlcPlaylistItem implements Parcelable {
 		dest.writeInt(id);
 		dest.writeInt(duration);
 		dest.writeString(uri);
+		dest.writeString(String.valueOf(selected));
 	}
 	
 	public String getName() {

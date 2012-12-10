@@ -6,6 +6,9 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.util.Log;
+
+import com.example.sserver.GenericActivity;
 import com.example.sserver.model.VlcPlaylistItem;
 
 public class VLCPlaylistHandler extends DefaultHandler {
@@ -39,6 +42,10 @@ public class VLCPlaylistHandler extends DefaultHandler {
 			item.setId(Integer.parseInt(attributes.getValue(2)));
 			item.setDuration(Integer.parseInt(attributes.getValue(3)));
 			item.setUri(attributes.getValue(4));
+			if(attributes.getLength() == 6) {
+				item.setSelected(true);
+				//Log.d(GenericActivity.TAG, "PlaylistHadler isSelected=true");
+			}
 			playlist.add(item);
 		}
 	}

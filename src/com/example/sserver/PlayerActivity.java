@@ -52,8 +52,8 @@ public class PlayerActivity extends GenericActivity {
 	TextView timePast;
 	TextView totalTime;
 	TextView title;
-	ListView plListView;
-	ArrayAdapter<String> plAdapter;
+	//ListView plListView;
+	//ArrayAdapter<String> plAdapter;
 
 	SeekBar progressBar;
 	VlcStatusItem vlcStatus;
@@ -93,9 +93,9 @@ public class PlayerActivity extends GenericActivity {
 		timePast = (TextView) findViewById(R.id.pl_time_esp);
 		totalTime = (TextView) findViewById(R.id.pl_time_total);
 		title = (TextView) findViewById(R.id.pl_title);
-		plListView = (ListView)findViewById(R.id.pl_log);
-		plAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new ArrayList<String>());
-		plListView.setAdapter(plAdapter);
+		//plListView = (ListView)findViewById(R.id.pl_log);
+		//plAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new ArrayList<String>());
+		//plListView.setAdapter(plAdapter);
 		progressBar = (SeekBar) findViewById(R.id.pl_progress_bar);
 		progressBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -270,7 +270,7 @@ public class PlayerActivity extends GenericActivity {
 	}
 	
 	public void Log(String msg) {
-		plAdapter.add(msg);
+		//plAdapter.add(msg);
 	}
 
 }

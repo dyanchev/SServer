@@ -4,14 +4,6 @@
     android:layout_height="match_parent"
     android:background="#CFCFCF">
 
-    <TextView
-        android:id="@+id/pl_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="22dp" />
-
     <SeekBar
         android:id="@+id/pl_progress_bar"
         android:layout_width="match_parent"
@@ -89,8 +81,23 @@
         android:id="@+id/pl_time_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/linearLayout1"
         android:text="00:00" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/pl_time_esp"
+        android:layout_marginTop="10dp"
+        android:text="Title:" />
+
+    <TextView
+        android:id="@+id/pl_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/textView1" />
 
 </RelativeLayout>

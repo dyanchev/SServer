@@ -58,6 +58,8 @@ public class PlayerActivity extends GenericActivity {
 	//ArrayAdapter<String> plAdapter;
 
 	SeekBar progressBar;
+	SeekBar volumeBar;
+	boolean usesVolumeBar = false;
 	VlcStatusItem vlcStatus;
 	boolean usesProgressBar = false;
 	boolean isPulling;
@@ -119,6 +121,27 @@ public class PlayerActivity extends GenericActivity {
 			}
 
 		});
+		
+		volumeBar = (SeekBar)findViewById(R.id.pl_volume);
+		volumeBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				if(fromUser) {
+					usesVolumeBar = true;
+					mBoundService.sendVolumeCommand(progress);
+				}
+			}
+
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				
+			}
+
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				usesVolumeBar = false;
+			}
+			
+		});
+		
 		playButton = (ImageButton) findViewById(R.id.bnt_play);
 		playButton.setOnClickListener(new OnClickListener() {
 
@@ -225,6 +248,9 @@ public class PlayerActivity extends GenericActivity {
 
 			if (!usesProgressBar) {
 				progressBar.setProgress((int) status.getTime());
+			}
+			if(volumeBar.getProgress() != status.getVolume() && !usesVolumeBar) {
+				volumeBar.setProgress(status.getVolume());
 			}
 			//CALC TOTAL TIME
 			int totalMM,totalSS,length;

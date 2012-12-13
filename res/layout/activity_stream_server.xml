@@ -125,4 +125,25 @@
         android:layout_alignBaseline="@+id/pl_artist_view"
         android:layout_toRightOf="@+id/pl_artist_view" />
 
+    <SeekBar
+        android:id="@+id/pl_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignLeft="@+id/pl_artist"
+        android:layout_alignParentRight="true"
+        android:max="512"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        android:progressDrawable="@drawable/pl_volume_progress" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pl_title"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/media_volume" />
+
 </RelativeLayout>

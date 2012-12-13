@@ -223,6 +223,12 @@ public class VLCService extends Service implements IVLCClientListener {
 		}
 	}
 	
+	public void sendVolumeCommand(int volume) {
+		if(isWifiConnected) {
+			vlcClient.sendVolumeCommand(volume);
+		}
+	}
+	
 	public void onServerChanged() {
 		vlcClient.cancelTimer();
 		vlcClient.setVlcClientListener(null);

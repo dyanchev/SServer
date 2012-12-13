@@ -33,6 +33,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.AdapterView.OnItemClickListener;
@@ -43,15 +44,16 @@ public class PlayerActivity extends GenericActivity {
 
 	public static int SERVER_PORT = 8080;
 
-	Button playButton;
-	Button pauseButton;
-	Button stopButton;
-	Button nextButton;
-	Button prevButton;
+	ImageButton playButton;
+	ImageButton pauseButton;
+	ImageButton stopButton;
+	ImageButton nextButton;
+	ImageButton prevButton;
 	
 	TextView timePast;
 	TextView totalTime;
 	TextView title;
+	TextView artist;
 	//ListView plListView;
 	//ArrayAdapter<String> plAdapter;
 
@@ -69,6 +71,9 @@ public class PlayerActivity extends GenericActivity {
 		iFilter.addAction(GenericActivity.INTENT_SEEK);
 		this.registerReceiver(seekReceiver, iFilter);
 		Log.d(TAG, "Register Receiver");
+		if(mIsBound && mBoundService != null) {
+			mBoundService.sendStatusCommand();
+		}
 	}
 
 	@Override
@@ -93,6 +98,7 @@ public class PlayerActivity extends GenericActivity {
 		timePast = (TextView) findViewById(R.id.pl_time_esp);
 		totalTime = (TextView) findViewById(R.id.pl_time_total);
 		title = (TextView) findViewById(R.id.pl_title);
+		artist = (TextView) findViewById(R.id.pl_artist);
 		//plListView = (ListView)findViewById(R.id.pl_log);
 		//plAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, new ArrayList<String>());
 		//plListView.setAdapter(plAdapter);
@@ -113,7 +119,7 @@ public class PlayerActivity extends GenericActivity {
 			}
 
 		});
-		playButton = (Button) findViewById(R.id.bnt_play);
+		playButton = (ImageButton) findViewById(R.id.bnt_play);
 		playButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -121,14 +127,14 @@ public class PlayerActivity extends GenericActivity {
 			}
 
 		});
-		pauseButton = (Button) findViewById(R.id.bnt_pause);
+		pauseButton = (ImageButton) findViewById(R.id.bnt_pause);
 		pauseButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				onPauseButton();
 			}
 		});
-		stopButton = (Button) findViewById(R.id.bnt_stop);
+		stopButton = (ImageButton) findViewById(R.id.bnt_stop);
 		stopButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -136,7 +142,7 @@ public class PlayerActivity extends GenericActivity {
 			}
 		});
 
-		prevButton = (Button) findViewById(R.id.bnt_prev);
+		prevButton = (ImageButton) findViewById(R.id.bnt_prev);
 		prevButton.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
@@ -144,7 +150,7 @@ public class PlayerActivity extends GenericActivity {
 			}
 		});
 		
-		nextButton = (Button) findViewById(R.id.bnt_next);
+		nextButton = (ImageButton) findViewById(R.id.bnt_next);
 		nextButton.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
@@ -245,6 +251,9 @@ public class PlayerActivity extends GenericActivity {
 					for(InfoItem info : category.getInfo()) {
 						if(info.getName().equals("title")) {
 							title.setText(info.getValue());
+						}
+						if(info.getName().equals("artist")) {
+							artist.setText(info.getValue());
 						}
 					}
 				}

@@ -2,102 +2,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFCFCF">
+    android:background="#CFCFCF" >
 
-    <SeekBar
-        android:id="@+id/pl_progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/pl_title"
-        android:layout_marginTop="38dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/pl_progress_bar"
-        android:background="@drawable/pl_controls_background"
-        android:orientation="horizontal" >
+        android:layout_marginTop="200dp" >
 
-          <ImageButton
-              android:id="@+id/bnt_prev"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:background="@null"
-              android:paddingLeft="20dp"
-              android:src="@drawable/media_skip_backward"
-              android:text="@string/bnt_prev" />
-       
-        <ImageButton
-            android:id="@+id/bnt_stop"
+        <SeekBar
+            android:id="@+id/pl_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/pl_title"
+            android:layout_marginTop="38dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:paddingLeft="14dp"
-            android:src="@drawable/media_playback_stop"
-            android:text="@string/bnt_stop" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pl_progress_bar"
+            android:background="@drawable/pl_controls_background"
+            android:orientation="horizontal" >
 
-        <ImageButton
-            android:id="@+id/bnt_pause"
+            <ImageButton
+                android:id="@+id/bnt_prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="20dp"
+                android:src="@drawable/media_skip_backward"
+                android:text="@string/bnt_prev" />
+
+            <ImageButton
+                android:id="@+id/bnt_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="14dp"
+                android:src="@drawable/media_playback_start"
+                android:text="@string/bnt_play" />
+
+            <ImageButton
+                android:id="@+id/bnt_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="14dp"
+                android:src="@drawable/media_playback_pause"
+                android:text="@string/bnt_pause" />
+
+            <ImageButton
+                android:id="@+id/bnt_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="14dp"
+                android:src="@drawable/media_playback_stop"
+                android:text="@string/bnt_stop" />
+
+            <ImageButton
+                android:id="@+id/bnt_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="14dp"
+                android:src="@drawable/media_skip_forward"
+                android:text="@string/bnt_next" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pl_time_esp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:paddingLeft="14dp"
-            android:src="@drawable/media_playback_pause"
-            android:text="@string/bnt_pause" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout1"
+            android:text="00:00" />
 
-        <ImageButton
-            android:id="@+id/bnt_play"
+        <TextView
+            android:id="@+id/pl_time_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:paddingLeft="14dp"
-            android:src="@drawable/media_playback_start"
-            android:text="@string/bnt_play" />
-        
-         <ImageButton
-             android:id="@+id/bnt_next"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="@null"
-             android:paddingLeft="14dp"
-             android:src="@drawable/media_skip_forward"
-             android:text="@string/bnt_next" />
-        
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/linearLayout1"
+            android:text="00:00" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/pl_time_esp"
+        android:id="@+id/pl_title_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1"
-        android:text="00:00" />
-
-    <TextView
-        android:id="@+id/pl_time_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout1"
-        android:text="00:00" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/pl_time_esp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/pl_time_esp"
         android:text="Title:" />
 
     <TextView
         android:id="@+id/pl_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/textView1" />
+        android:layout_toRightOf="@id/pl_title_view" />
+
+    <TextView
+        android:id="@+id/pl_artist_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pl_title_view"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/pl_time_esp"
+        android:text="Artist:" />
+
+    <TextView
+        android:id="@+id/pl_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pl_artist_view"
+        android:layout_toRightOf="@+id/pl_artist_view" />
 
 </RelativeLayout>

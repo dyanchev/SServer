@@ -41,6 +41,7 @@ public class RemotePlaylistAdapter extends ArrayAdapter<VlcPlaylistItem> {
 				row = layoutInflater.inflate(R.layout.remote_pl_row, parent,false);
 				holder = new RowHolder();
 				holder.name = (TextView) row.findViewById(R.id.remote_pl_row_name);
+				holder.time = (TextView) row.findViewById(R.id.remote_pl_row_time);
 				row.setTag(holder);
 			}
 		}else {
@@ -49,6 +50,14 @@ public class RemotePlaylistAdapter extends ArrayAdapter<VlcPlaylistItem> {
 		if(item != null) {
 			
 			holder.name.setText(item.getName() != null ? item.getName() : "null");
+			int minutes,seconds;
+			minutes = item.getDuration() / 60;
+			seconds = item.getDuration() % 60;
+			if(item.getDuration() != -1) {
+				holder.time.setText((minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds));
+			} else {
+				holder.time.setText("00:00");
+			}
 			if(item.isSelected()) {
 				holder.name.setTypeface(null, Typeface.BOLD);
 				//Log.d(GenericActivity.TAG, "PlaylistAdapter : isSelected:"+item.isSelected());
@@ -61,5 +70,6 @@ public class RemotePlaylistAdapter extends ArrayAdapter<VlcPlaylistItem> {
 
 	private static class RowHolder {
 		TextView name;
+		TextView time;
 	}
 }

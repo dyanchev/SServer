@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -8,6 +8,16 @@
         android:id="@+id/remote_pl_row_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="test"
         />
+    <TextView 
+    	android:id="@+id/remote_pl_row_time"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@id/remote_pl_row_name"
+    	android:layout_alignParentRight="true"
+    	android:text="00:00"
+    	
+    />
 
-</LinearLayout>
+</RelativeLayout>

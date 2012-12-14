@@ -24,6 +24,7 @@ import com.example.sserver.service.VLCService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
@@ -34,7 +35,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -180,7 +184,13 @@ public class PlayerActivity extends GenericActivity {
 				onNextButton();
 			}
 		}); 
-
+		if(getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
+			RelativeLayout ll = (RelativeLayout) findViewById(R.id.relativeLayout1);
+			((RelativeLayout.LayoutParams)ll.getLayoutParams()).topMargin -= 90;
+			ImageView image = (ImageView) findViewById(R.id.imageView1);
+			((RelativeLayout.LayoutParams)image.getLayoutParams()).topMargin -= 20; 
+			Log.d(TAG, "On Landscape orientation");
+		}
 	}
 
 	@Override
@@ -298,6 +308,11 @@ public class PlayerActivity extends GenericActivity {
 			//
 			usesProgressBar = false;
 		}
+	}
+	
+	public void onConfigurationChanged(Configuration conf) {
+		super.onConfigurationChanged(conf);
+		Log.d(TAG, "On Orientation changed");
 	}
 
 	public Context This() {

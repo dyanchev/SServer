@@ -5,10 +5,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Toast;
 
 import com.example.sserver.service.VLCService;
@@ -96,6 +98,22 @@ public class GenericActivity extends Activity {
 		return "localhost:8081";
 	}
 	return ipString;
+	}
+	
+	public int getScreenOrientation()
+	{
+	    Display getOrient = getWindowManager().getDefaultDisplay();
+	    int orientation = Configuration.ORIENTATION_UNDEFINED;
+	    if(getOrient.getWidth()==getOrient.getHeight()){
+	        orientation = Configuration.ORIENTATION_SQUARE;
+	    } else{ 
+	        if(getOrient.getWidth() < getOrient.getHeight()){
+	            orientation = Configuration.ORIENTATION_PORTRAIT;
+	        }else { 
+	             orientation = Configuration.ORIENTATION_LANDSCAPE;
+	        }
+	    }
+	    return orientation;
 	}
 	
 }
